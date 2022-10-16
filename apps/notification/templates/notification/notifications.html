@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="title">Notifcations</h1>
+
+    {% for notification in notifications %}
+      <div class="notification">
+        <p>
+          {% if notification.notification_type == 'message' %}
+            <a href="{% url 'notifications' %}?goto=view_application&notification={{ notification.id }}">
+              <strong>{{ notification.created_by.username }}</strong> send you a message
+            </a>
+          {% else %}
+            <a href="{% url 'notifications' %}?goto=view_application&notification={{ notification.id }}">
+              <strong>{{ notification.created_by.username }}</strong> applied for your job
+            </a>
+          {% endif %}
+          <br>
+          <small>{{ notification.created_at|timesince }} ago</small>
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
