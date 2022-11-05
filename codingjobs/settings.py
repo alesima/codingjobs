@@ -34,15 +34,20 @@ SECRET_KEY = 'django-insecure-d*@3!6&wvcp4_1nk$e@&64jil6x(60=jn-4_28w@!25elcei%2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv_bool('DEBUG', True)
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(' ')
-INTERNAL_IPS = ('127.0.0.1',)
+# Assets management
+ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
+
+# load production server from .env
+ALLOWED_HOSTS = ['localhost', 'localhost:8000',
+                 '127.0.0.1', os.getenv('SERVER', '127.0.0.1')]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000',
+                        'http://127.0.0.1', 'https://' + os.getenv('SERVER', '127.0.0.1')]
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -82,6 +87,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.notification.context_processors.notifications',
+                'apps.core.context_processors.cfg_assets_root',
             ],
         },
     },
@@ -248,3 +254,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = (
+    'apps.core.custom-auth-backend.CustomBackend',
+)
+
+SITE_ID = 1

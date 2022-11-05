@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
+unipath = "*"
+dj-database-url = "*"
+djangorestframework = "*"
 
 [dev-packages]
 autopep8 = "*"
