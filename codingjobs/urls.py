@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
+from django.conf.urls.static import static
 from django.contrib.auth import views
 
 from apps.core.views import index, signup
-from apps.job.views import job_detail, add_job
 
 urlpatterns = [
     path('', index, name='index'),
@@ -30,4 +31,4 @@ urlpatterns = [
     path('dashboard/', include('apps.userprofile.urls')),
     path('jobs/', include('apps.job.urls')),
     path('notifications/', include('apps.notification.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

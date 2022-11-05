@@ -3,7 +3,6 @@ import json
 from django.views.decorators.http import require_http_methods
 from django.db.models import Q
 from django.http import JsonResponse
-from pkg_resources import require
 
 from .models import Job
 
