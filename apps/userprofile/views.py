@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from apps.job.models import Application, Job
+from apps.models.Application import Application
+from apps.models.Job import Job
+from apps.models.ConversationMessage import ConversationMessage
 from apps.notification.utilities import create_notification
-from .models import ConversationMessage
 
 
 @login_required

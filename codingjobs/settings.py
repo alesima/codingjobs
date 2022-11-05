@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.core',
+    'apps.authentication',
     'apps.job',
+    'apps.models',
     'apps.notification',
     'apps.userprofile',
 ]
@@ -198,6 +200,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
+        'apps.models': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        }
     }
 }
 

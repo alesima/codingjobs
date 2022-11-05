@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Application, Job
+from apps.models.Job import Job
+from apps.models.Application import Application
 
 
 class AddJobForm(forms.ModelForm):

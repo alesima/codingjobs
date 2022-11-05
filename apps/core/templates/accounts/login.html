@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %} {% block content %}
+{% extends 'layouts/base.html' %} {% block content %}
 <div class="container">
   <div class="columns">
     <div class="column is-6 is-offset-3">
@@ -19,14 +19,14 @@
         <div class="field">
           <div class="control">
             <label for="username">Username</label>
-            <input type="text" class="input" name="username" id="id_username">
+            {{ form.username }}
           </div>
         </div>
 
         <div class="field">
           <div class="control">
             <label for="username">Password</label>
-            <input type="password" class="input" name="password" id="id_password">
+            {{ form.password }}
           </div>
         </div>
 

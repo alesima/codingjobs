@@ -1,7 +1,7 @@
 from django.contrib.auth.admin import User, UserAdmin
 from django.contrib import admin
 
-from .models import UserProfile
+from apps.models.UserProfile import UserProfile
 
 
 class UserProfileInline(admin.StackedInline):

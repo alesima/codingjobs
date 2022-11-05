@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Notification
+from apps.models.Notification import Notification
 
 
 @login_required

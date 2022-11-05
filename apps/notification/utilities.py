@@ -1,4 +1,4 @@
-from .models import Notification
+from apps.models.Notification import Notification
 
 
 def create_notification(request, to_user, notification_type, extra_id=0):

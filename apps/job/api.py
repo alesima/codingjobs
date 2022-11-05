@@ -4,7 +4,7 @@ from django.views.decorators.http import require_http_methods
 from django.db.models import Q
 from django.http import JsonResponse
 
-from .models import Job
+from apps.models.Job import Job
 
 
 @require_http_methods(["POST"])
