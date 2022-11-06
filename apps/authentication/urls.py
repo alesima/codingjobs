@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from django.contrib.auth.views import LogoutView
 from .views import login_view, register_user
 

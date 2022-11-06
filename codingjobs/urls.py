@@ -24,8 +24,16 @@ from apps.core.views import index
 urlpatterns = [
     path('', index, name='index'),
     path('', include('apps.authentication.urls')),
+    path('api/', include('apps.api.urls')),
     path('admin/', admin.site.urls),
     path('dashboard/', include('apps.userprofile.urls')),
     path('jobs/', include('apps.job.urls')),
     path('notifications/', include('apps.notification.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('summernote/', include('django_summernote.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

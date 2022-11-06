@@ -55,8 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'django_summernote',
+    'rest_framework',
     'apps.core',
     'apps.authentication',
+    'apps.api',
     'apps.job',
     'apps.models',
     'apps.notification',
@@ -249,6 +253,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

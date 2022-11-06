@@ -8,6 +8,8 @@ django = "*"
 unipath = "*"
 dj-database-url = "*"
 djangorestframework = "*"
+django-filter = "*"
+django-summernote = "*"
 
 [dev-packages]
 autopep8 = "*"
