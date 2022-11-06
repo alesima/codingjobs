@@ -38,7 +38,7 @@
 
                 <div class="field">
                   <label class="is-size-4 has-text-weight-bold">
-                    Job Title 
+                    Job Title
                     <span class="has-text-danger is-size-3">&#x2022;</span>
                     <p
                       class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
@@ -48,13 +48,7 @@
                     </p>
                   </label>
                   <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="title"
-                      id="id_title"
-                      v-model="form.title"
-                    />
+                    {{ form.title }}
                   </div>
                 </div>
 
@@ -63,31 +57,25 @@
                     Job Description
                     <span class="has-text-danger is-size-3">&#x2022;</span>
                   </label>
-                  <div class="control">
-                  {{ form.description }}
-                  </div>
+                  <div class="control">{{ form.description }}</div>
                 </div>
 
                 <div class="field">
-                  <label>Short description</label>
+                  <label for="company_size">Company size</label>
                   <div class="control">
-                    <textarea
-                      class="textarea"
-                      name="short_description"
-                      id="id_short_description"
-                      v-model="form.short_description"
-                    ></textarea>
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label>Long description</label>
-                  <div class="control">
-                    <textarea
-                      class="textarea"
-                      name="long_description"
-                      id="id_long_description"
-                    ></textarea>
+                    <div class="select">
+                      <select
+                        name="company_size"
+                        id="id_company_size"
+                        v-model="form.company_size"
+                      >
+                        <option value="">Choose size</option>
+                        <option value="size_1-9">1-9</option>
+                        <option value="size_10-49">10-49</option>
+                        <option value="size_50-99">50-99</option>
+                        <option value="size_100">100+</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
@@ -149,25 +137,6 @@
                       name="company_contry"
                       id="id_company_country"
                     />
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label for="company_size">Company size</label>
-                  <div class="control">
-                    <div class="select">
-                      <select
-                        name="company_size"
-                        id="id_company_size"
-                        v-model="form.company_size"
-                      >
-                        <option value="">Choose size</option>
-                        <option value="size_1-9">1-9</option>
-                        <option value="size_10-49">10-49</option>
-                        <option value="size_50-99">50-99</option>
-                        <option value="size_100">100+</option>
-                      </select>
-                    </div>
                   </div>
                 </div>
 

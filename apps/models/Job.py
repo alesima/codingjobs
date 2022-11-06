@@ -1,54 +1,20 @@
 from django.contrib.auth.models import User
 from django.db import models
+from .enums import StatusEnum, BooleanEnums, CategoryEnum, JobTypeEnum
 
 
 class Job(models.Model):
-    ACTIVE = 'active'
-    EMPLOYED = 'employed'
-    ARCHIVED = 'archived'
-
-    CHOICES_STATUS = {
-        (ACTIVE, 'Active'),
-        (EMPLOYED, 'Employed'),
-        (ARCHIVED, 'Archived'),
-    }
-
-    CHOICES_CATEGORY = {
-        ('design', 'Design'),
-        ('full-stack', 'Full-Stack Programming'),
-        ('front-end', 'Front-end Programming'),
-        ('back-end', 'Back-end Programming'),
-        ('customer-support', 'Customer Support'),
-        ('devops-sysadmin', 'DevOps and SysAdmin'),
-        ('sales-marketing', 'Sales and Marketing'),
-        ('management-finance', 'Management and Finance'),
-        ('product', 'Product'),
-        ('other', 'All Other Remote'),
-    }
-
-    YES = 'y'
-    NO = 'n'
-
-    CHOICES_YES_NO = {
-        (YES, 'Yes'),
-        (NO, 'No')
-    }
-
-    CHOICES_JOB_TYPE = {
-        ('full-time', 'Full-Time'),
-        ('contract', 'Contract'),
-    }
 
     status = models.CharField(
-        max_length=20, choices=CHOICES_STATUS, default=ACTIVE)
+        max_length=20, choices=StatusEnum.choices(), default=StatusEnum.get_value('ACTIVE'))
     title = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(
-        max_length=50, choices=CHOICES_CATEGORY)
+        max_length=50, choices=CategoryEnum.choices())
     skills = models.TextField(blank=True, null=True)
     is_worldwide = models.CharField(
-        max_length=1, choices=CHOICES_YES_NO, default=YES)
-    job_type = models.CharField(max_length=20, choices=CHOICES_JOB_TYPE)
+        max_length=1, choices=BooleanEnums.choices(), default=BooleanEnums.get_value('YES'))
+    job_type = models.CharField(max_length=20, choices=JobTypeEnum.choices())
     company_name = models.CharField(max_length=255)
     company_hq = models.CharField(max_length=255)
     company_website = models.CharField(max_length=255)
@@ -62,4 +28,4 @@ class Job(models.Model):
     changed_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.title
+        return "{} | {}".format(self.title, self.company_name)

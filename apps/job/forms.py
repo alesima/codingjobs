@@ -8,6 +8,12 @@ class AddJobForm(forms.ModelForm):
     class Meta:
         model = Job
         widgets = {
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'input',
+                    'v-model': 'form.title'
+                }
+            ),
             'description': SummernoteWidget(attrs={
                 'v-model': 'form.description'
             })
