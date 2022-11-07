@@ -15,6 +15,7 @@ class Job(models.Model):
     is_worldwide = models.CharField(
         max_length=1, choices=BooleanEnums.choices(), default=BooleanEnums.get_value('YES'))
     job_type = models.CharField(max_length=20, choices=JobTypeEnum.choices())
+    application_link = models.CharField(max_length=255, blank=True, null=True)
     company_name = models.CharField(max_length=255)
     company_hq = models.CharField(max_length=255)
     company_website = models.CharField(max_length=255)

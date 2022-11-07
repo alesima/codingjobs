@@ -7,152 +7,315 @@
     </p>
   </div>
 </section>
-<div class="content has-background-light">
-  <div class="columns py-5">
-    <div class="column is-8 is-offset-2">
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
-            <div class="columns is-vcentered">
-              <div class="column is-6">
-                <h1 class="title is-4 has-text-danger">
-                  First, tell us about the position
-                </h1>
-              </div>
-              <div class="column is-6 has-text-right">
-                <h1 class="subtitle has-text-grey is-6">
-                  REQUIRED FIELDS
-                  <span class="has-text-danger is-size-3">&#x2022;</span>
-                </h1>
+<section class="section has-background-light">
+  <!-- Form -->
+  <div class="content">
+    <div class="columns py-5">
+      <div class="column is-6 is-offset-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <div class="columns is-vcentered">
+                <div class="column is-6">
+                  <h1 class="title is-4 has-text-danger">
+                    First, tell us about the position
+                  </h1>
+                </div>
+                <div class="column is-6 has-text-right">
+                  <h1 class="subtitle has-text-grey is-6">
+                    REQUIRED FIELDS
+                    <span class="has-text-danger is-size-3">&#x2022;</span>
+                  </h1>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="content">
-            <div id="add-job-app">
-              <form method="post" v-on:submit="validateForm">
-                {% csrf_token %}
+            <div class="content">
+              <div id="add-job-app">
+                <form
+                  method="post"
+                  enctype="multipart/form-data"
+                  v-on:submit="validateForm"
+                >
+                  {% csrf_token %}
 
-                <div class="notification is-danger" v-if="errors.length">
-                  <p v-for="error in errors">[[ error ]]</p>
-                </div>
-
-                <div class="field">
-                  <label class="is-size-4 has-text-weight-bold">
-                    Job Title
-                    <span class="has-text-danger is-size-3">&#x2022;</span>
-                    <p
-                      class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
-                    >
-                      Example: "Senior Designer". Titles must describe one
-                      position.
-                    </p>
-                  </label>
-                  <div class="control">
-                    {{ form.title }}
+                  <div class="notification is-danger" v-if="errors.length">
+                    <p v-for="error in errors">[[ error ]]</p>
                   </div>
-                </div>
 
-                <div class="field">
-                  <label class="is-size-4 has-text-weight-bold">
-                    Job Description
-                    <span class="has-text-danger is-size-3">&#x2022;</span>
-                  </label>
-                  <div class="control">{{ form.description }}</div>
-                </div>
-
-                <div class="field">
-                  <label for="company_size">Company size</label>
-                  <div class="control">
-                    <div class="select">
-                      <select
-                        name="company_size"
-                        id="id_company_size"
-                        v-model="form.company_size"
+                  <div class="field">
+                    <label class="is-size-4 has-text-weight-bold">
+                      Job Title
+                      <span class="has-text-danger is-size-3">&#x2022;</span>
+                      <p
+                        class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
                       >
-                        <option value="">Choose size</option>
-                        <option value="size_1-9">1-9</option>
-                        <option value="size_10-49">10-49</option>
-                        <option value="size_50-99">50-99</option>
-                        <option value="size_100">100+</option>
-                      </select>
+                        Example: "Senior Designer". Titles must describe one
+                        position.
+                      </p>
+                    </label>
+                    <div class="control">{{ form.title }}</div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-6">
+                      <div class="field">
+                        <label
+                          for="category"
+                          class="is-size-4 has-text-weight-bold"
+                        >
+                          Category
+                          <span class="has-text-danger is-size-3"
+                            >&#x2022;</span
+                          >
+                        </label>
+                        <div class="control">
+                          <div class="select is-fullwidth">
+                            {{ form.category }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column is-6">
+                      <div class="field">
+                        <label
+                          for="category"
+                          class="is-size-4 has-text-weight-bold"
+                        >
+                          Skill (If Applicable)
+                          <span class="has-text-danger is-size-3"></span>
+                        </label>
+                        <div class="control">
+                          <div class="select is-fullwidth">
+                            {{ form.category }}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="field">
-                  <label>Company name</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="company_name"
-                      id="id_company_name"
-                      v-model="form.company_name"
-                    />
-                  </div>
-                </div>
+                  <div class="field">
+                    <label class="is-size-4 has-text-weight-bold">
+                      Is This Role Open Worldwide?
+                      <span class="has-text-danger is-size-3">&#x2022;</span>
+                      <p
+                        class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                      >
+                        Selecting 'Yes' means your future hire can work anywhere
+                        in the world without any location or time zone
+                        restrictions!
+                      </p>
+                    </label>
 
-                <div class="field">
-                  <label>Company address</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="company_address"
-                      id="id_company_address"
-                    />
+                    <div class="control py-3">
+                      <label class="radio is-size-5">
+                        <input
+                          type="radio"
+                          name="company_address"
+                          id="id_company_address"
+                          name="y"
+                        />
+                        Yes
+                      </label>
+                      <label class="radio is-size-5">
+                        <input
+                          type="radio"
+                          name="company_address"
+                          id="id_company_address"
+                          name="n"
+                          class=""
+                        />
+                        No
+                      </label>
+                    </div>
                   </div>
-                </div>
 
-                <div class="field">
-                  <label>Company zipcode</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="company_zipcode"
-                      id="id_company_zipcode"
-                    />
-                  </div>
-                </div>
+                  <div class="columns">
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Application Link or Email
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          >
+                            Link to Application page or Email address.
+                          </p>
+                        </label>
+                        <div class="control">{{ form.application_link }}</div>
+                      </div>
+                    </div>
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Job Type
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          ></p>
+                        </label>
 
-                <div class="field">
-                  <label>Company place</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="company_place"
-                      id="id_company_place"
-                    />
+                        <div class="control pt-5">
+                          <label class="radio is-size-5">
+                            <input
+                              type="radio"
+                              name="job_type"
+                              id="id_job_type"
+                              name="full-time"
+                            />
+                            Full-Time
+                          </label>
+                          <label class="radio is-size-5">
+                            <input
+                              type="radio"
+                              name="job_type"
+                              id="id_job_type"
+                              name="contract"
+                            />
+                            Contract
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <div class="field">
-                  <label>Company country</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      name="company_contry"
-                      id="id_company_country"
-                    />
+                  <div class="field">
+                    <label class="is-size-4 has-text-weight-bold">
+                      Job Description
+                      <span class="has-text-danger is-size-3">&#x2022;</span>
+                    </label>
+                    <div class="control">{{ form.description }}</div>
                   </div>
-                </div>
 
-                <div class="field">
-                  <div class="control">
-                    <button class="button is-success">Submit</button>
+                  <section class="section pl-0 pb-0">
+                    <h1
+                      class="title is-size-4 has-text-danger has-text-weight-bold"
+                    >
+                      Tell Us More About Your Company
+                    </h1>
+                    <h2 class="subtitle is-size-6">
+                      <span class="has-text-weight-bold">Posted before?</span>
+                      Just enter your
+                      <span class="has-text-weight-bold">email</span>, all other
+                      info will be pulled in from your last position!
+                    </h2>
+                  </section>
+
+                  <div class="columns">
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Company Name
+                          <span class="has-text-danger is-size-3"
+                            >&#x2022;</span
+                          >
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          >
+                            Enter your company or organization's name.
+                          </p>
+                        </label>
+                        <div class="control">{{ form.company_name }}</div>
+                      </div>
+                    </div>
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Company HQ
+                          <span class="has-text-danger is-size-3"
+                            >&#x2022;</span
+                          >
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          >
+                            Where your company is officially headquartered.
+                          </p>
+                        </label>
+                        <div class="control">{{ form.company_hq }}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </form>
+
+                  <div class="field">
+                    <label class="is-size-4 has-text-weight-bold">
+                      Logo
+                      <span class="has-text-danger is-size-3">&#x2022;</span>
+                      <p
+                        class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                      >
+                        It's highly recommended to use your Twitter or Facebook
+                        avatar. Optional — Your company logo will appear at the
+                        top of your listing and live profile.
+                      </p>
+                    </label>
+                    <div
+                      class="box is-shadowless is-clickable has-background-light p-5 mt-5 is-flex is-flex-direction-column is-align-items-center"
+                    >
+                      <label
+                        class="is-size-5 has-text-weight-medium has-text-grey is-unselectable"
+                      >
+                        Click or drag your photo here to upload
+                      </label>
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/64x64.png" class="is-rounded">
+                      </figure>
+                      {{ form.company_logo }}
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Company Website's URL
+                          <span class="has-text-danger is-size-3"
+                            >&#x2022;</span
+                          >
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          >
+                            Example: https://mybusiness.com/
+                          </p>
+                        </label>
+                        <div class="control">{{ form.company_website }}</div>
+                      </div>
+                    </div>
+                    <div class="column is-6">
+                      <div class="field">
+                        <label class="is-size-4 has-text-weight-bold">
+                          Email
+                          <span class="has-text-danger is-size-3"
+                            >&#x2022;</span
+                          >
+                          <p
+                            class="is-size-7 has-text-grey is-family-monospace has-text-weight-bold"
+                          >
+                            We’ll send your receipt and confirmation email here.
+                          </p>
+                        </label>
+                        <div class="control">{{ form.company_email }}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="is-size-4 has-text-weight-bold">
+                      Company Description
+                    </label>
+                    <div class="control">{{ form.company_description }}</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="control">
+                      <button class="button is-success">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 {% endblock %} {% block javascripts %}
 <script>
   const AddJobApp = {

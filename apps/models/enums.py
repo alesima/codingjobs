@@ -15,7 +15,7 @@ class AbstractChoiceEnum(Enum):
 
 class BooleanEnums(AbstractChoiceEnum):
     YES = ('y', 'Yes')
-    NO = ('n', 'N')
+    NO = ('n', 'No')
 
 
 class StatusEnum(AbstractChoiceEnum):
@@ -37,5 +37,5 @@ class CategoryEnum(AbstractChoiceEnum):
 
 
 class NotificationTypeEnum(AbstractChoiceEnum):
-    MESSAGE = ('message', 'Message'),
+    MESSAGE = ('message', 'Message')
     APPLICATION = ('application', 'Application')
