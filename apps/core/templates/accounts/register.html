@@ -1,66 +1,66 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<div class="container">
-  <div class="columns">
-    <div class="column is-6 is-offset-3">
-      <h1 class="title">Sign up</h1>
-      <form method="post">
-        {% csrf_token %}
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-6 is-offset-3">
+        <div class="box">
+          <h1 class="title has-text-centered">Sign Up</h1>
+          <form method="post">
+            {% csrf_token %} 
+            
+            {% if form.errors %} 
+              {% for field in form %} 
+                {% for error in field.errors %}
+                  <div class="notification is-danger">
+                    {{field.name}}: {{ error|escape }}
+                  </div>
+                {% endfor %} 
+              {% endfor %} 
+            {% endif %}
 
-        {% if form.errors %}
-          {% for field in form %}
-            {% for error in field.errors %}
-              <div class="notification is-danger">
-                {{field.name}}: {{ error|escape }}
+            <div class="field">
+              <div class="control">
+                {{ form.username }}
               </div>
-            {% endfor %}
-          {% endfor %}
-        {% endif %}
-
-        <div class="field">
-          <div class="control">
-            <label for="username">Username</label>
-            {{ form.username }}
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <label for="username">Email</label>
-            {{ form.email }}
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <label for="username">Password</label>
-            {{ form.password1 }}
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <label for="username">Password Confirmation</label>
-            {{ form.password2 }}
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Account type</label>
-          <div class="control">
-            <div class="select">
-              <select name="account_type">
-                <option value="jobseeker" selected>Job seeker</option>
-                <option value="employer">Employer</option>
-              </select>
             </div>
-          </div>
+
+            <div class="field">
+              <div class="control">
+                {{ form.email }}
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                {{ form.password1 }}
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                {{ form.password2 }}
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Account type</label>
+              <div class="control mt-1">
+                <div class="select">
+                  <select name="account_type">
+                    <option value="jobseeker">Job seeker</option>
+                    <option value="employer">Employer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-success">Register</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="field">
-          <div class="control">
-            <button class="button is-success">Register</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

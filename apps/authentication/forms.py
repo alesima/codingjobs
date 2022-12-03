@@ -50,7 +50,7 @@ class SignupForm(UserCreationForm):
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "Password Confirmation",
+                "placeholder": "Confirm Password",
                 "class": "input"
             }
         )
